@@ -1,0 +1,26 @@
+{% extends "storeapp/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action="" method="post" autocomplete="off" >
+    <div class="row col-md-6" style="color: rgb(11, 59, 59); font-weight: 200; font-family: Comic Sans MS; ">
+        <p>
+            Tabelul Vânzări:
+        </p>
+    </div>
+    {%csrf_token%}
+    {{form5|crispy}}
+    
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg" >
+                <i class="fas fa-database"></i> Submit </button>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'vanzari_list' %}" class="btn btn-secondary btn-block btn-lg">
+            <i class="fas fa-stream"></i> Lista de vânzări </a>
+        </div>
+    </div>
+    
+</form>
+{% endblock content %}

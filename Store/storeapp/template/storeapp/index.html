@@ -1,0 +1,78 @@
+
+{% extends "storeapp/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    #hello-msg{
+        font-size: 18px;
+        font-family: 'Comic Sans MS';
+        color:crimson;
+        margin-right: 20px;
+    }
+    #logout-text{
+        font-size: 18px;
+        font-family: 'Comic Sans MS';
+        color:darkmagenta;
+        margin-right: 20px;
+    }
+
+</style>
+<form action="" method="post" autocomplete="off" class="d-inline">
+    {%csrf_token%}
+    <div style="display:flex; justify-content:flex-end;" >
+        <span id="hello-msg">Hello, {{request.user}} </span>
+        <span> <a id="logout-text" href="{% url 'logout' %}">  LogOut  </a></span>
+       
+    </div>
+</form>
+<form action="" method="post" autocomplete="off" class="d-inline">
+    {%csrf_token%}
+    <div class="row col-md-6" style="color: rgb(11, 59, 59); font-weight: 200; font-family: Comic Sans MS; ">
+        <p>
+            Alege tabelul:
+        </p>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'produse_list' %}" class="btn btn-outline-info btn-block btn-lg">
+            <i class="fas fa-stream"></i> Lista de produse </a>
+        </div>
+        <div class="col-md-6">
+            <a href="{% url 'producator_list' %}" class="btn btn-outline-info btn-block btn-lg" >
+            <i class="fas fa-stream"></i> Lista de producători </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'categorie_list' %}" class="btn btn-outline-info btn-block btn-lg">
+            <i class="fas fa-stream"></i> Lista de categorii </a>
+        </div>
+        <div class="col-md-6">
+            <a href="{% url 'furnizor_list' %}" class="btn btn-outline-info btn-block btn-lg" >
+            <i class="fas fa-stream"></i> Lista de furnizori </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'comanda_list' %}" class="btn btn-outline-info btn-block btn-lg" >
+            <i class="fas fa-stream"></i> Lista de comenzi </a>
+        </div>
+        <div class="col-md-6">
+            <a href="{% url 'vanzari_list' %}" class="btn btn-outline-info btn-block btn-lg" >
+            <i class="fas fa-stream"></i> Lista de vânzări </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{% url 'job_list' %}" class="btn btn-outline-info btn-block btn-lg" >
+            <i class="fas fa-stream"></i> Lista de job-uri </a>
+        </div>
+        <div class="col-md-6">
+            <a href="{% url 'angajat_list' %}" class="btn btn-outline-info btn-block btn-lg">
+            <i class="fas fa-stream"></i> Lista de angajați </a>
+        </div>
+    </div>
+    
+</form>
+{% endblock content %}

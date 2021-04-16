@@ -1,0 +1,59 @@
+{% extends "storeapp/base.html" %}
+
+{% block content %}
+<div class="row col-md-6" style="color: rgb(11, 59, 59); font-weight: 200; font-family: Comic Sans MS; ">
+    <p>
+        Tabelul Produse:
+    </p>
+</div>
+<table class="table table-borderless"> 
+    <thead class="border bottom font-weight-bold">
+        <tr style="font-family: Comic Sans MS; font-style: italic; color: brown;"> 
+            <td>Nume Produs</td>
+            <td>Data Producerii</td>
+            <td>Data Expirării</td>
+            <td>Preț</td>
+            <td>Barcode</td>
+            <td>Detalii</td>
+            <td>Producător</td>
+            <td>Categorie</td>
+            <td>
+                <a href="{% url 'produse_insert' %}" class="btn btn-outline-success">
+                   <i class="fas fa-plus"></i>Adaugă          
+                </a>  
+            </td>
+        </tr>
+    </thead>
+    <tbody  style="font-family: 'Courier New', Courier; color: rgb(70, 7, 7);">
+        {% for produs in produse_list %}
+           <tr>
+               <td>{{produs.nume_produs}}</td>
+               <td>{{produs.data_producerii}}</td>
+               <td>{{produs.data_expirarii}}</td>
+               <td>{{produs.pret}}</td>
+               <td>{{produs.barcode}}</td>
+               <td>{{produs.detalii}}</td>
+               <td>{{produs.producator}}</td>
+               <td>{{produs.categorie}}</td>
+               <td>
+                   <a href="{% url 'produse_update' produs.id %}" class="btn text-secondary px-0">
+                       <i class="far fa-edit fa-lg"></i>
+                   </a>
+                   <form action="{% url 'produse_delete' produs.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                        </button>
+                   </form>
+               </td>
+            </tr> 
+        {% endfor %}
+    </tbody>
+
+</table>
+<div class="col-md-4">
+    <a href="{% url 'main' %}" class="btn btn-warning btn-block btn-lg">
+        <i class="fas fa-home"></i>  Home  </a>
+</div>
+
+{% endblock content %}

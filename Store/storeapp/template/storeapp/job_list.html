@@ -1,0 +1,44 @@
+{% extends "storeapp/base.html" %}
+
+{% block content %}
+<div class="row col-md-6" style="color: rgb(11, 59, 59); font-weight: 200; font-family: Comic Sans MS; ">
+    <p>
+        Tabelul Job:
+    </p>
+</div>
+<table class="table table-borderless"> 
+    <thead class="border bottom font-weight-bold">
+        <tr style="font-family: Comic Sans MS; font-style: italic; color: brown;"> 
+            <td>Denumire Job</td>
+            <td>
+                <a href="{% url 'job_insert' %}" class="btn btn-outline-success">
+                   <i class="fas fa-plus"></i>Adaugă          
+                </a>  
+            </td>
+        </tr>
+    </thead>
+    <tbody  style="font-family: 'Courier New', Courier; color: rgb(70, 7, 7);">
+        {% for job in job_list %}
+           <tr>
+               <td>{{job.denumire}}</td>
+               <td>
+                   <a href="{% url 'job_update' job.id %}" class="btn text-secondary px-0">
+                       <i class="far fa-edit fa-lg"></i>
+                   </a>
+                   <form action="{% url 'job_delete' job.id %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">
+                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                        </button>
+                   </form>
+               </td>
+            </tr> 
+        {% endfor %}
+    </tbody>
+
+</table>
+<div class="col-md-4">
+    <a href="{% url 'main' %}" class="btn btn-warning btn-block btn-lg">
+        <i class="fas fa-home"></i>  Home  </a>
+</div>
+{% endblock content %}
